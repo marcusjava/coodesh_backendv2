@@ -1,10 +1,16 @@
 import './util/module-alias';
 import { Server } from '@overnightjs/core';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import { Application } from 'express';
 import * as database from '@src/database';
 import { ArticlesController } from '@src/controllers/articles';
 import { apiErrorValidator } from './middlewares/api-error-validator';
+import swaggerUi from 'swagger-ui-express';
+import * as OpenApiValidator from 'express-openapi-validator';
+import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
+import logger from './logger';
+import expressPino from 'express-pino-logger';
 
 export class SetupServer extends Server {
   constructor(private port = 3001) {
@@ -19,6 +25,12 @@ export class SetupServer extends Server {
 
   private setupExpress(): void {
     this.app.use(bodyParser.json());
+    this.app.use(expressPino(logger));
+    this.app.use(
+      cors({
+        origin: '*',
+      })
+    );
   }
   private async setupMongo(): Promise<void> {
     await database.connect();
