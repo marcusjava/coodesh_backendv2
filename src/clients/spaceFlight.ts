@@ -40,6 +40,7 @@ const spaceflightResourceConfig: IConfig = config.get(
 );
 
 export class SpaceFlight {
+  /* facilita os testes!!!! */
   constructor(protected request = new HTTPUtil.Request()) {}
 
   public async getArticles(): Promise<ArticleI[]> {
