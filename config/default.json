@@ -1,0 +1,18 @@
+{
+  "App": {
+    "port": 3000,
+    "database": {
+      "mongoUrlProd": "mongodb+srv://space:flight@cluster0.s6rhu.mongodb.net/spaceDB?retryWrites=true&w=majority",
+      "mongoUrl": "mongodb://localhost:27017/spaceDB"
+    },
+    "resources": {
+      "SpaceFlight": {
+        "apiUrl": "https://api.spaceflightnewsapi.net/v3"
+      }
+    },
+    "logger": {
+      "enabled": true,
+      "level": "info"
+    }
+  }
+}

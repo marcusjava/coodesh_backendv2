@@ -1,0 +1,129 @@
+[
+  {
+    "_id": "61a405f558c42e2dc37a94cd",
+    "id": 13165,
+    "title": "India, Russia agree to enhance space cooperation",
+    "url": "https://spacenews.com/india-russia-agree-to-enhance-space-cooperation/",
+    "imageUrl": "https://spacenews.com/wp-content/uploads/2021/12/Modi-and-Putin-copy.jpg",
+    "newsSite": "SpaceNews",
+    "summary": "India and Russia agreed Dec. 6 to strengthen cooperation in the space sector, including human spaceflight programs and satellite navigation.",
+    "publishedAt": "2021-12-07T16:26:45.000Z",
+    "updatedAt": "2021-12-07T16:26:45.517Z",
+    "featured": false,
+    "launches": [],
+    "events": []
+  },
+  {
+    "_id": "61a405f558c42e2dc37a94ce",
+    "id": 13163,
+    "title": "Concerned about SpaceX, France to accelerate reusable rocket plans",
+    "url": "https://arstechnica.com/science/2021/12/france-seeks-to-build-reusable-rocket-make-up-for-bad-choices-in-the-past/",
+    "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2021/12/GettyImages-1237047219.jpg",
+    "newsSite": "Arstechnica",
+    "summary": "\"It's a real break from French strategy, and clearly inspired by the USA.\"",
+    "publishedAt": "2021-12-07T14:04:14.000Z",
+    "updatedAt": "2021-12-07T14:16:49.773Z",
+    "featured": false,
+    "launches": [],
+    "events": []
+  },
+  {
+    "_id": "61a405f558c42e2dc37a94cf",
+    "id": 13162,
+    "title": "NASA announces new astronauts as safety panel recommends strategic planning for space exploration",
+    "url": "https://spacenews.com/nasa-announces-new-astronauts-as-safety-panel-recommends-strategic-planning-for-space-exploration/",
+    "imageUrl": "https://spacenews.com/wp-content/uploads/2021/12/astronauts-class2021.jpg",
+    "newsSite": "SpaceNews",
+    "summary": "NASA announced a new class of astronauts that will be eligible for missions to the moon on the same day the agency’s safety advisers called for strategic planning to ensure success in those exploration efforts.",
+    "publishedAt": "2021-12-07T12:46:46.000Z",
+    "updatedAt": "2021-12-07T17:02:20.792Z",
+    "featured": false,
+    "launches": [],
+    "events": [
+      {
+        "id": 440,
+        "provider": "Launch Library 2"
+      }
+    ]
+  },
+  {
+    "_id": "61a405f558c42e2dc37a94d0",
+    "id": 13161,
+    "title": "Chinese private firm Galactic Energy puts five satellites in orbit with second launch",
+    "url": "https://spacenews.com/chinese-private-firm-galactic-energy-puts-five-satellites-in-orbit-with-second-launch/",
+    "imageUrl": "https://spacenews.com/wp-content/uploads/2021/12/Ceres-1-Y2-liftoff-7dec2021-galactic-energy.jpg",
+    "newsSite": "SpaceNews",
+    "summary": "Rocket company Galactic Energy launched its second Ceres-1 rocket late Dec. 6, becoming the first Chinese private firm to reach orbit twice.",
+    "publishedAt": "2021-12-07T11:26:45.000Z",
+    "updatedAt": "2021-12-07T17:02:42.060Z",
+    "featured": false,
+    "launches": [
+      {
+        "id": "7ccf6526-6c1f-42f6-99d6-83a429249cef",
+        "provider": "Launch Library 2"
+      }
+    ],
+    "events": []
+  },
+  {
+    "_id": "61a405f558c42e2dc37a94d1",
+    "id": 13160,
+    "title": "ULA launches STP-3 mission with national security and NASA payloads",
+    "url": "https://spacenews.com/ula-launches-stp-3-mission-with-national-security-and-nasa-payloads/",
+    "imageUrl": "https://spacenews.com/wp-content/uploads/2021/12/Screen-Shot-2021-12-07-at-5.19.40-AM-e1638872709694.png",
+    "newsSite": "SpaceNews",
+    "summary": "A United Launch Alliance Atlas 5 rocket on Dec. 7 launched the Space Test Program-3 (STP-3) mission for the U.S. Space Force. The rocket lifted off at 5:19 a.m. Eastern from Space Launch Complex-41 at Cape Canaveral Space Force Station, Florida.",
+    "publishedAt": "2021-12-07T10:36:45.000Z",
+    "updatedAt": "2021-12-07T17:02:49.801Z",
+    "featured": false,
+    "launches": [
+      {
+        "id": "495fe114-753d-48b1-9d23-eb9adaa3fb23",
+        "provider": "Launch Library 2"
+      }
+    ],
+    "events": []
+  },
+  {
+    "_id": "61a405f558c42e2dc37a94d2",
+    "id": 13158,
+    "title": "SpaceX stacking two Starships at once for the first time in ten months",
+    "url": "https://www.teslarati.com/spacex-starbase-stacking-two-starships-at-once/",
+    "imageUrl": "https://www.teslarati.com/wp-content/uploads/2021/12/Starbase-111721-NASASpaceflight-bocachicagal-S21-nose-S22-1-c.jpg",
+    "newsSite": "Teslarati",
+    "summary": "As of late November, SpaceX has begun stacking two Starship prototypes simultaneously for the first time in ten months. Known as Starship...",
+    "publishedAt": "2021-12-07T10:07:05.000Z",
+    "updatedAt": "2021-12-07T10:07:14.507Z",
+    "featured": false,
+    "launches": [],
+    "events": []
+  },
+  {
+    "_id": "61a405f558c42e2dc37a94d3",
+    "id": 13157,
+    "title": "Rocket engine supplier Ursa Major raises $85 million in new funding round",
+    "url": "https://spacenews.com/rocket-engine-supplier-ursa-major-raises-85-million-in-new-funding-round/",
+    "imageUrl": "https://spacenews.com/wp-content/uploads/2021/05/Ursa-172_AK_cropped-2-scaled.jpg",
+    "newsSite": "SpaceNews",
+    "summary": "Ursa Major, a Colorado-based manufacturer of liquid engines for small space launchers and hypersonic vehicles, announced Dec. 7 it has closed an $85 million Series C fundraising round.",
+    "publishedAt": "2021-12-07T10:06:45.000Z",
+    "updatedAt": "2021-12-07T10:06:45.621Z",
+    "featured": false,
+    "launches": [],
+    "events": []
+  },
+  {
+    "_id": "61a405f558c42e2dc37a94d4",
+    "id": 12927,
+    "title": "REPLAY: The SpaceNews Awards and year-end panel discussion",
+    "url": "https://spacenews.com/weve-picked-the-winners-of-the-2021-spacenews-awards/",
+    "imageUrl": "https://spacenews.com/wp-content/uploads/2021/11/Sn-Awards-promo-large-tweet-Panel.png",
+    "newsSite": "SpaceNews",
+    "summary": "The SpaceNews Awards are held each year to recognize achievements in space commerce, exploration and stewardship.",
+    "publishedAt": "2021-12-06T23:46:46.000Z",
+    "updatedAt": "2021-12-06T23:46:46.204Z",
+    "featured": false,
+    "launches": [],
+    "events": []
+  }
+]
