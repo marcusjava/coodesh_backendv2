@@ -72,6 +72,7 @@ describe('Article services test', () => {
     expect(updated?.title).toEqual(article.title);
     expect(updated?.updatedAt).not.toEqual(article.updatedAt);
   });
+
   it('creating an article', async () => {
     const article = {
       title: 'Only Brazil agree to enhance space cooperation',
@@ -101,6 +102,7 @@ describe('Article services test', () => {
     expect(savedArticle._id).not.toBeNull();
     expect(savedArticle?.createdAt).not.toBeNull();
   });
+
   it('should get specific article', async () => {
     const id = '61a405f558c42e2dc37a94cd';
 
