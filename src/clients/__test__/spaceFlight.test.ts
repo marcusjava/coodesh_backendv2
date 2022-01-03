@@ -24,7 +24,7 @@ describe('SpaceFlight client', () => {
     expect(response).toEqual(spaceFlightArticles);
   });
 
-  it('should get a generic error from StormGlass service when the request fail before reaching the service', async () => {
+  it('should get a generic error from SpaceFlight service when the request fail before reaching the service', async () => {
     mockedRequest.get.mockRejectedValue({ message: 'Network Error' });
     const space = new SpaceFlight(mockedRequest);
     await expect(space.getArticles()).rejects.toThrow(

@@ -10,7 +10,7 @@ export interface ArticleI {
   newsSite: string;
   summary: string;
   publishedAt: string;
-  updatedAt: string;
+  updatedAt?: string;
   createdAt?: string;
   launches?: {
     id: string;

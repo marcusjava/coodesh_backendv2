@@ -40,12 +40,12 @@ describe('Article services test', () => {
     expect(articles).not.toContain(deleted);
   });
 
-  it('mongoose return null when passed wrong or inexistent id', async () => {
-    const wrongId = '61a405f558c42e2dc37a94cc';
+  it('mongoose return null when passed inexistent id', async () => {
+    const inexistentId = '61a405f558c42e2dc37a94cc';
 
-    const deleted = await service.deleteArticleFromDB(wrongId);
+    const article = await service.getArticleFromDB(inexistentId);
 
-    expect(deleted).toEqual(null);
+    expect(article).toEqual(null);
   });
 
   it('should update an article', async () => {
@@ -82,7 +82,6 @@ describe('Article services test', () => {
       summary:
         'India and Russia agreed Dec. 6 to strengthen cooperation in the space sector, including human spaceflight programs and satellite navigation.',
       publishedAt: '2021-12-07T16:26:45.000Z',
-      updatedAt: '2021-12-07T16:26:45.517Z',
       featured: false,
       events: [
         {
@@ -99,9 +98,8 @@ describe('Article services test', () => {
     };
 
     const savedArticle = await service.saveArticleInDB(article);
-    expect(savedArticle.updatedAt).not.toEqual(article.updatedAt);
-    expect(savedArticle?.createdAt).not.toBeNull();
     expect(savedArticle._id).not.toBeNull();
+    expect(savedArticle?.createdAt).not.toBeNull();
   });
   it('should get specific article', async () => {
     const id = '61a405f558c42e2dc37a94cd';
