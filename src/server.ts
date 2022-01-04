@@ -6,6 +6,7 @@ import { Application } from 'express';
 import * as database from '@src/database';
 import { ArticlesController } from '@src/controllers/articles';
 import { UsersController } from '@src/controllers/users';
+import apiSchema from './api-schema.json';
 import { apiErrorValidator } from './middlewares/api-error-validator';
 import swaggerUi from 'swagger-ui-express';
 import * as OpenApiValidator from 'express-openapi-validator';
@@ -19,6 +20,7 @@ export class SetupServer extends Server {
   }
   public async init(): Promise<void> {
     this.setupExpress();
+    this.docsSetup();
     this.setupController();
     await this.setupMongo();
     this.setupErrorHandlers();
@@ -35,6 +37,17 @@ export class SetupServer extends Server {
   }
   private async setupMongo(): Promise<void> {
     await database.connect();
+  }
+
+  private async docsSetup(): Promise<void> {
+    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiSchema));
+    this.app.use(
+      OpenApiValidator.middleware({
+        apiSpec: apiSchema as OpenAPIV3.Document,
+        validateRequests: true, //we do it
+        validateResponses: true,
+      })
+    );
   }
 
   public async close(): Promise<void> {
