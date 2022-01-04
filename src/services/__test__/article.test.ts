@@ -1,16 +1,21 @@
 import { ArticleService } from '@src/services/article';
 import articlesFromMongo from '@test/fixtures/articles_from_mongodb.json';
+import articlesFromSpace from '@test/fixtures/space_flight_articles.json';
 import { Article } from '@src/models/Articles';
 import * as db from '@test/fake-database';
 
 //jest.mock('@src/services/article');
+
+let _id: string;
 
 beforeAll(async () => {
   await db.connect();
 });
 
 beforeEach(async () => {
-  await Article.insertMany(articlesFromMongo);
+  await Article.insertMany(articlesFromSpace);
+  const article = await Article.findOne({ id: 13165 });
+  _id = article?._id;
 });
 
 afterEach(async () => {
@@ -26,16 +31,14 @@ describe('Article services test', () => {
 
   const service = new ArticleService();
   it('should return an list of articles from database', async () => {
-    const articlesFromDB = await Article.find({});
-
     const articles = await service.getArticlesFromDB();
 
-    expect(articles).toEqual(articlesFromDB);
+    expect(articles).not.toBeNull();
   });
 
   it('should delete an article from databse', async () => {
-    const id = '61a405f558c42e2dc37a94ce';
-    const deleted = await service.deleteArticleFromDB(id);
+    const deleted = await service.deleteArticleFromDB(_id);
+    expect(deleted).not.toBeNull();
     const articles = await service.getArticlesFromDB();
     expect(articles).not.toContain(deleted);
   });
@@ -49,8 +52,7 @@ describe('Article services test', () => {
   });
 
   it('should update an article', async () => {
-    const article = {
-      _id: '61a405f558c42e2dc37a94cd',
+    const articleUpdated = {
       id: 13165,
       title: 'India, Brazil agree to enhance space cooperation',
       url: 'https://spacenews.com/india-russia-agree-to-enhance-space-cooperation/',
@@ -64,13 +66,10 @@ describe('Article services test', () => {
       featured: false,
     };
 
-    const updated = await service.updateArticleFromDB(
-      article,
-      '61a405f558c42e2dc37a94cd'
-    );
+    const updated = await service.updateArticleFromDB(articleUpdated, _id);
 
-    expect(updated?.title).toEqual(article.title);
-    expect(updated?.updatedAt).not.toEqual(article.updatedAt);
+    expect(updated?.title).toEqual(articleUpdated.title);
+    expect(updated?.updatedAt).not.toEqual(articleUpdated.updatedAt);
   });
 
   it('creating an article', async () => {
@@ -104,10 +103,7 @@ describe('Article services test', () => {
   });
 
   it('should get specific article', async () => {
-    const id = '61a405f558c42e2dc37a94cd';
-
-    const article = await service.getArticleFromDB(id);
-
+    const article = await service.getArticleFromDB(_id);
     expect(article).not.toBeNull();
   });
 });
