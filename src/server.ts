@@ -2,7 +2,7 @@ import './util/module-alias';
 import { Server } from '@overnightjs/core';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
 import * as database from '@src/database';
 import { ArticlesController } from '@src/controllers/articles';
 import { UsersController } from '@src/controllers/users';
@@ -20,6 +20,7 @@ export class SetupServer extends Server {
   }
   public async init(): Promise<void> {
     this.setupExpress();
+    this.welcome();
     this.setupController();
     this.docsSetup();
     await this.setupMongo();
@@ -52,6 +53,12 @@ export class SetupServer extends Server {
 
   public async close(): Promise<void> {
     await database.close();
+  }
+
+  private welcome(): void {
+    this.app.get('/', (req: Request, res: Response): void => {
+      res.status(200).send('Back-end Challenge 2021 🏅 - Space Flight News');
+    });
   }
 
   public start(): void {

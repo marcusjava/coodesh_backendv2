@@ -1,11 +1,12 @@
 import { ArticleService } from '@src/services/article';
 import { Controller, Get, Post, Put, Delete } from '@overnightjs/core';
 import { Request, Response } from 'express';
+import { BaseController } from './index';
 
 const services = new ArticleService();
 
 @Controller('api/articles')
-export class ArticlesController {
+export class ArticlesController extends BaseController {
   @Get('')
   public async getArticles(req: Request, res: Response): Promise<void> {
     const page = parseInt(req.query.page as string) | 1;
@@ -18,7 +19,10 @@ export class ArticlesController {
       const results = articles.slice(startIndex, endIndex);
       res.status(200).json(results);
     } catch (error) {
-      res.status(500).send({ error: 'Something went wrong' });
+      this.sendErrorResponse(res, {
+        code: 500,
+        message: 'Something went wrong',
+      });
     }
   }
   @Post('')
@@ -26,8 +30,8 @@ export class ArticlesController {
     try {
       const article = await services.saveArticleInDB(req.body);
       res.status(200).json(article);
-    } catch (error) {
-      res.status(500).send({ error: 'Something went wrong' });
+    } catch (error: any) {
+      this.sendCreatedUpdatedErrorResponse(res, error);
     }
   }
 
@@ -35,10 +39,9 @@ export class ArticlesController {
   public async createArticles(req: Request, res: Response): Promise<void> {
     try {
       const articles = await services.saveArticlesInDB();
-      console.log(articles);
       res.status(200).json(articles);
-    } catch (error) {
-      res.status(500).send({ error: 'Something went wrong' });
+    } catch (error: any) {
+      this.sendCreatedUpdatedErrorResponse(res, error);
     }
   }
   @Get(':id')
@@ -48,7 +51,10 @@ export class ArticlesController {
       const article = await services.getArticleFromDB(id);
       res.status(200).json(article);
     } catch (error) {
-      res.status(500).send({ error: 'Something went wrong' });
+      this.sendErrorResponse(res, {
+        code: 500,
+        message: 'Something went wrong',
+      });
     }
   }
 
@@ -59,7 +65,10 @@ export class ArticlesController {
       const article = await services.updateArticleFromDB(req.body, id);
       res.status(200).json(article);
     } catch (error) {
-      res.status(500).send({ error: 'Something went wrong' });
+      this.sendErrorResponse(res, {
+        code: 500,
+        message: 'Something went wrong',
+      });
     }
   }
   @Delete(':id')
@@ -69,7 +78,10 @@ export class ArticlesController {
       const article = await services.deleteArticleFromDB(id);
       res.status(200).json(article);
     } catch (error) {
-      res.status(500).send({ error: 'Something went wrong' });
+      this.sendErrorResponse(res, {
+        code: 500,
+        message: 'Something went wrong',
+      });
     }
   }
 }
