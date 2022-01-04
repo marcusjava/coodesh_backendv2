@@ -37,6 +37,15 @@ const ArticleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+    required: true,
+  },
+  newsSite: { type: String, required: true },
+  summary: { type: String, required: true },
+  publishedAt: { type: String, required: true },
+  launches: [{ id: String, provider: String }],
+  events: [{ id: String, provider: String }],
 });
 
 export const Article = mongoose.model<ArticleI & Document>(
