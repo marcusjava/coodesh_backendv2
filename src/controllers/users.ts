@@ -7,7 +7,7 @@ import { authMiddleware } from '@src/middlewares/auth';
 import logger from '@src/logger';
 import mongoose from 'mongoose';
 
-@Controller('users')
+@Controller('api/users')
 export class UsersController extends BaseController {
   @Post('')
   public async createUser(req: Request, res: Response): Promise<void> {
@@ -45,6 +45,7 @@ export class UsersController extends BaseController {
   }
 
   @Get('me')
+  @Middleware(authMiddleware)
   public async me(req: Request, res: Response): Promise<Response> {
     const email = req.decoded ? req.decoded.email : undefined;
 

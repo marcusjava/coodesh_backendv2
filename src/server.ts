@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import { Application } from 'express';
 import * as database from '@src/database';
 import { ArticlesController } from '@src/controllers/articles';
+import { UsersController } from '@src/controllers/users';
 import { apiErrorValidator } from './middlewares/api-error-validator';
 import swaggerUi from 'swagger-ui-express';
 import * as OpenApiValidator from 'express-openapi-validator';
@@ -48,7 +49,8 @@ export class SetupServer extends Server {
 
   private setupController(): void {
     const articlesController = new ArticlesController();
-    this.addControllers([articlesController]);
+    const usersController = new UsersController();
+    this.addControllers([articlesController, usersController]);
   }
 
   private setupErrorHandlers(): void {
