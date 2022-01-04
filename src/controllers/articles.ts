@@ -30,6 +30,17 @@ export class ArticlesController {
       res.status(500).send({ error: 'Something went wrong' });
     }
   }
+
+  @Post('db')
+  public async createArticles(req: Request, res: Response): Promise<void> {
+    try {
+      const articles = await services.saveArticlesInDB();
+      console.log(articles);
+      res.status(200).json(articles);
+    } catch (error) {
+      res.status(500).send({ error: 'Something went wrong' });
+    }
+  }
   @Get(':id')
   public async getArticle(req: Request, res: Response): Promise<void> {
     try {

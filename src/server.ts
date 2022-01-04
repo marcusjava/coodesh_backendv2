@@ -20,8 +20,8 @@ export class SetupServer extends Server {
   }
   public async init(): Promise<void> {
     this.setupExpress();
-    this.docsSetup();
     this.setupController();
+    this.docsSetup();
     await this.setupMongo();
     this.setupErrorHandlers();
   }
@@ -40,7 +40,7 @@ export class SetupServer extends Server {
   }
 
   private async docsSetup(): Promise<void> {
-    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiSchema));
+    this.app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(apiSchema));
     this.app.use(
       OpenApiValidator.middleware({
         apiSpec: apiSchema as OpenAPIV3.Document,

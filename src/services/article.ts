@@ -30,6 +30,18 @@ export class ArticleService {
     }
   }
 
+  public async saveArticlesInDB(): Promise<ArticleI[]> {
+    try {
+      const spaceClient = new SpaceFlight();
+      const data = await spaceClient.getArticles();
+      console.log(data);
+      const articles = await Article.insertMany(data);
+      return articles;
+    } catch (error: any) {
+      throw new ArticleProcessingInternalError(error.message);
+    }
+  }
+
   public async getArticleFromDB(_id: string): Promise<ArticleI | null> {
     try {
       const article = await Article.findOne({ _id });
