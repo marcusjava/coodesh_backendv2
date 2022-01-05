@@ -78,7 +78,11 @@ describe('Article API functional tests', () => {
       .post('/api/articles')
       .send(newArticle);
     expect(status).toEqual(500);
-    expect(body).toEqual({ error: 'Something went wrong' });
+    expect(body).toEqual({
+      code: 500,
+      error: 'Server Error',
+      message: 'Something went wrong',
+    });
   });
 
   it('should delete a article', async () => {

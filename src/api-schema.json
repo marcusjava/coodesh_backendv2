@@ -12,18 +12,19 @@
   },
   "servers": [
     {
-      "url": "http://waldemarnt-com.umbler.net/",
-      "description": "Production Server"
-    },
-    {
       "url": "http://localhost:3000/",
       "description": "Local server"
+    },
+    {
+      "url": "http://waldemarnt-com.umbler.net/",
+      "description": "Production Server"
     }
   ],
   "paths": {
     "/api/users": {
       "post": {
         "description": "Create a new User",
+        "tags": ["Users"],
         "operationId": "createUser",
         "parameters": [],
         "requestBody": {
@@ -84,6 +85,7 @@
       "post": {
         "description": "Authenticate the user on the API generating a JWT token",
         "operationId": "authenticateUser",
+        "tags": ["Users"],
         "parameters": [],
         "requestBody": {
           "content": {
@@ -128,6 +130,7 @@
       "get": {
         "security": [{ "apiKey": [] }],
         "description": "Get the profile of the token's owner",
+        "tags": ["Users"],
         "operationId": "getUserProfile",
         "responses": {
           "200": {
@@ -162,6 +165,7 @@
       "post": {
         "description": "Create a new Article belonging to the authenticated user",
         "operationId": "createArticle",
+        "tags": ["Article"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -203,6 +207,7 @@
       "get": {
         "description": "Get Articles",
         "operationId": "getArticles",
+        "tags": ["Article"],
         "parameters": [
           {
             "name": "page",
@@ -246,8 +251,8 @@
                   "$ref": "#/components/schemas/Error"
                 },
                 "example": {
-                  "message": "User not found",
-                  "code": "404",
+                  "message": "Something went wrong",
+                  "code": "400",
                   "error": "Not Found"
                 }
               }
@@ -256,11 +261,10 @@
         }
       }
     },
-    "/api/articles/{:id}": {
+    "/api/articles/{id}": {
       "get": {
-        "summary": "GET Article",
-        "tags": ["Get Article"],
-        "operationId": "articles-list",
+        "tags": ["Article"],
+        "operationId": "article-by-id",
         "parameters": [
           {
             "name": "id",
@@ -291,7 +295,7 @@
                   "$ref": "#/components/schemas/Error"
                 },
                 "example": {
-                  "message": "User not found",
+                  "message": "Article not found",
                   "code": "404",
                   "error": "Not Found"
                 }
@@ -301,8 +305,7 @@
         }
       },
       "delete": {
-        "summary": "DELETE Article",
-        "tags": ["Delete Article"],
+        "tags": ["Article"],
         "operationId": "articles-list",
         "parameters": [
           {
@@ -315,11 +318,21 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Articles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleResponse"
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
-        "summary": "UPDATE Article",
-        "tags": ["Update, Article"],
+        "tags": ["Article"],
         "operationId": "article-update",
         "parameters": [
           {
@@ -338,7 +351,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Article"
+                "$ref": "#/components/schemas/UpdateArticle"
               }
             }
           }
@@ -516,6 +529,45 @@
         },
         "required": ["title", "summary", "featured", "url", "imageUrl"]
       },
+      "UpdateArticle": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "$ref": "#/components/schemas/_id"
+          },
+          "id": {
+            "$ref": "#/components/schemas/id"
+          },
+          "title": {
+            "$ref": "#/components/schemas/title"
+          },
+          "url": {
+            "$ref": "#/components/schemas/url"
+          },
+          "imageUrl": {
+            "$ref": "#/components/schemas/imageUrl"
+          },
+          "newsSite": {
+            "$ref": "#/components/schemas/newsSite"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/summary"
+          },
+          "publishedAt": {
+            "$ref": "#/components/schemas/publishedAt"
+          },
+          "featured": {
+            "$ref": "#/components/schemas/featured"
+          },
+          "launchs": {
+            "$ref": "#/components/schemas/launches"
+          },
+          "events": {
+            "$ref": "#/components/schemas/events"
+          }
+        },
+        "required": ["title", "summary", "featured", "url", "imageUrl"]
+      },
       "Articles": {
         "type": "array",
         "items": {
@@ -583,8 +635,8 @@
               "password": {
                 "$ref": "#/components/schemas/password"
               },
-              "id": {
-                "$ref": "#/components/schemas/id"
+              "_id": {
+                "$ref": "#/components/schemas/_id"
               }
             }
           }
@@ -630,8 +682,8 @@
               "password": {
                 "$ref": "#/components/schemas/password"
               },
-              "id": {
-                "$ref": "#/components/schemas/id"
+              "_id": {
+                "$ref": "#/components/schemas/_id"
               }
             }
           }
@@ -640,11 +692,11 @@
       "ArticleCreatedResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "$ref": "#/components/schemas/id"
-          },
           "_id": {
             "$ref": "#/components/schemas/_id"
+          },
+          "id": {
+            "$ref": "#/components/schemas/id"
           },
           "title": {
             "$ref": "#/components/schemas/title"
@@ -678,12 +730,13 @@
       "ArticlesResponse": {
         "type": "array",
         "items": {
-          "id": {
-            "$ref": "#/components/schemas/id"
-          },
           "_id": {
             "$ref": "#/components/schemas/_id"
           },
+          "id": {
+            "$ref": "#/components/schemas/id"
+          },
+
           "title": {
             "$ref": "#/components/schemas/title"
           },
@@ -730,7 +783,7 @@
             "$ref": "#/components/schemas/url"
           },
           "imageUrl": {
-            "$ref": "#/components/schemas/immageUrl"
+            "$ref": "#/components/schemas/imageUrl"
           },
           "newsSite": {
             "$ref": "#/components/schemas/newsSite"
@@ -741,14 +794,11 @@
           "publishedAt": {
             "$ref": "#/components/schemas/publishedAt"
           },
-          "createdAt": {
-            "$ref": "#/components/schemas/createdAt"
-          },
           "featured": {
             "$ref": "#/components/schemas/featured"
           },
-          "launchs": {
-            "$ref": "#/components/schemas/launchs"
+          "launches": {
+            "$ref": "#/components/schemas/launches"
           },
           "events": {
             "$ref": "#/components/schemas/events"

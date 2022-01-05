@@ -44,6 +44,17 @@ export class ArticlesController extends BaseController {
       this.sendCreatedUpdatedErrorResponse(res, error);
     }
   }
+
+  @Put(':id')
+  public async updateArticle(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const article = await services.updateArticleFromDB(req.body, id);
+      res.status(200).json(article);
+    } catch (error: any) {
+      this.sendCreatedUpdatedErrorResponse(res, error);
+    }
+  }
   @Get(':id')
   public async getArticle(req: Request, res: Response): Promise<void> {
     try {
@@ -58,19 +69,6 @@ export class ArticlesController extends BaseController {
     }
   }
 
-  @Put(':id')
-  public async updateArticle(req: Request, res: Response): Promise<void> {
-    try {
-      const { id } = req.params;
-      const article = await services.updateArticleFromDB(req.body, id);
-      res.status(200).json(article);
-    } catch (error) {
-      this.sendErrorResponse(res, {
-        code: 500,
-        message: 'Something went wrong',
-      });
-    }
-  }
   @Delete(':id')
   public async deleteArticle(req: Request, res: Response): Promise<void> {
     try {
