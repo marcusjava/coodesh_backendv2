@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "version": "1.3.0",
-    "title": "Surf Forecast",
-    "description": "Surf Forecast API",
+    "title": "Space Flight API",
+    "description": "Space Flight API",
     "termsOfService": "http://api_url/terms/",
     "license": {
       "name": "Apache 2.0",
@@ -21,7 +21,7 @@
     }
   ],
   "paths": {
-    "/users": {
+    "/api/users": {
       "post": {
         "description": "Create a new User",
         "operationId": "createUser",
@@ -80,7 +80,7 @@
         }
       }
     },
-    "/users/authenticate": {
+    "/api/users/authenticate": {
       "post": {
         "description": "Authenticate the user on the API generating a JWT token",
         "operationId": "authenticateUser",
@@ -124,7 +124,7 @@
         }
       }
     },
-    "/users/me": {
+    "/api/users/me": {
       "get": {
         "security": [{ "apiKey": [] }],
         "description": "Get the profile of the token's owner",
@@ -158,16 +158,15 @@
         }
       }
     },
-    "/beaches": {
+    "/api/articles": {
       "post": {
-        "security": [{ "apiKey": [] }],
-        "description": "Create a new Beach belonging to the authenticated user",
-        "operationId": "createBeach",
+        "description": "Create a new Article belonging to the authenticated user",
+        "operationId": "createArticle",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Beach"
+                "$ref": "#/components/schemas/Article"
               }
             }
           },
@@ -175,24 +174,24 @@
         },
         "responses": {
           "201": {
-            "description": "The Beach has been created!",
+            "description": "Article has been created!",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BeachCreatedResponse"
+                  "$ref": "#/components/schemas/ArticleCreatedResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "Error validating the beach data.",
+            "description": "Error validating article data.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
                 },
                 "example": {
-                  "message": "Error validating beach data",
+                  "message": "Error validating article data",
                   "code": "400",
                   "error": "Bad Request"
                 }
@@ -200,38 +199,172 @@
             }
           }
         }
-      }
-    },
-    "/forecast": {
+      },
       "get": {
-        "security": [{ "apiKey": [] }],
-        "description": "Get the list of forecast ordered by the most ranked",
-        "operationId": "getForecast",
+        "description": "Get Articles",
+        "operationId": "getArticles",
         "parameters": [
           {
-            "name": "orderBy",
+            "name": "page",
             "in": "query",
-            "required": false,
+            "description": "Pagination parameter.",
+            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/orderBy"
-            }
+              "type": "string"
+            },
+            "default": "1",
+            "enum": ["1", "2", "3", "4", "5"]
           },
           {
-            "name": "orderField",
+            "name": "limit",
             "in": "query",
-            "required": false,
+            "description": "Pagination Limit for items displayed",
+            "required": true,
+            "default": "10",
             "schema": {
-              "$ref": "#/components/schemas/orderField"
+              "type": "string"
+            },
+            "enum": ["10", "20", "30"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Articles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticlesResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User not found",
+                  "code": "404",
+                  "error": "Not Found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/articles/{:id}": {
+      "get": {
+        "summary": "GET Article",
+        "tags": ["Get Article"],
+        "operationId": "articles-list",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Article mongo ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "The list of forecast has been returned",
+            "description": "Article",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TimeForecast"
+                  "$ref": "#/components/schemas/ArticleResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User not found",
+                  "code": "404",
+                  "error": "Not Found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE Article",
+        "tags": ["Delete Article"],
+        "operationId": "articles-list",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Article mongo ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "summary": "UPDATE Article",
+        "tags": ["Update, Article"],
+        "operationId": "article-update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Article mongo ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update Article",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Article"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Articles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User not found",
+                  "code": "404",
+                  "error": "Not Found"
                 }
               }
             }
@@ -276,39 +409,65 @@
         "type": "string",
         "example": "12345#@$$%"
       },
-      "beachName": {
+      "title": {
         "type": "string",
-        "example": "Copacabana beach"
+        "example": "India, Russia agree to enhance space cooperation"
       },
-      "beachLat": {
-        "type": "number",
-        "example": 10.55
-      },
-      "beachLng": {
-        "type": "number",
-        "example": -10.55
-      },
-      "id": {
+      "url": {
         "type": "string",
-        "example": "5e8131eba7768d9e4f06c884"
+        "example": "https://spacenews.com/india-russia-agree-to-enhance-space-cooperation/"
       },
-      "beachPosition": {
+      "imageUrl": {
         "type": "string",
-        "enum": ["N", "S", "W", "E"],
-        "example": "S"
+        "example": "https://spacenews.com/wp-content/uploads/2021/12/Modi-and-Putin-copy.jpg"
       },
-      "forecastPropertyKey": {
-        "type": "object",
-        "properties": {
-          "source": {
-            "type": "string",
-            "example": "noa"
-          },
-          "value": {
-            "type": "number",
-            "example": "10.1"
+      "newsSite": {
+        "type": "string",
+        "example": "SpaceNews"
+      },
+      "summary": {
+        "type": "string",
+        "example": "India and Russia agreed Dec. 6 to strengthen cooperation in the space sector, including human spaceflight programs and satellite navigation."
+      },
+      "publishedAt": {
+        "type": "string",
+        "example": "2021-12-07T16:26:45.000Z"
+      },
+      "updatedAt": {
+        "type": "string",
+        "example": "2021-12-07T16:26:45.000Z"
+      },
+      "featured": {
+        "type": "boolean",
+        "example": true
+      },
+      "launches": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "number", "example": 440 },
+            "provider": { "type": "string", "example": "Launch Library 2" }
           }
         }
+      },
+      "events": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "number", "example": 440 },
+            "provider": { "type": "string", "example": "Launch Library 2" }
+          }
+        }
+      },
+      "id": {
+        "type": "number",
+        "example": 13458
+      },
+      "_id": {
+        "type": "string",
+        "example": "5e8131eba7768d9e4f06c884"
       },
       "User": {
         "type": "object",
@@ -324,98 +483,76 @@
           }
         }
       },
-      "Beach": {
+      "Article": {
         "type": "object",
         "properties": {
-          "name": {
-            "$ref": "#/components/schemas/beachName"
+          "title": {
+            "$ref": "#/components/schemas/title"
           },
-          "lat": {
-            "$ref": "#/components/schemas/beachLat"
+          "url": {
+            "$ref": "#/components/schemas/url"
           },
-          "lng": {
-            "$ref": "#/components/schemas/beachLng"
+          "imageUrl": {
+            "$ref": "#/components/schemas/imageUrl"
           },
-          "position": {
-            "$ref": "#/components/schemas/beachPosition"
+          "newsSite": {
+            "$ref": "#/components/schemas/newsSite"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/summary"
+          },
+          "publishedAt": {
+            "$ref": "#/components/schemas/publishedAt"
+          },
+          "featured": {
+            "$ref": "#/components/schemas/featured"
+          },
+          "launchs": {
+            "$ref": "#/components/schemas/launches"
+          },
+          "events": {
+            "$ref": "#/components/schemas/events"
           }
         },
-        "required": ["name", "lat", "lng", "position"]
+        "required": ["title", "summary", "featured", "url", "imageUrl"]
       },
-      "TimeForecast": {
+      "Articles": {
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "time": {
-              "type": "string",
-              "example": "2019-05-31T08:00:00+00:00"
+            "id": {
+              "$ref": "#/components/schemas/id"
             },
-            "forecast": {
-              "$ref": "#/components/schemas/BeachForecast"
-            }
-          }
-        }
-      },
-      "BeachForecast": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "$ref": "#/components/schemas/beachName"
+            "_id": {
+              "$ref": "#/components/schemas/_id"
             },
-            "lat": {
-              "$ref": "#/components/schemas/beachLat"
+            "title": {
+              "$ref": "#/components/schemas/title"
             },
-            "lng": {
-              "$ref": "#/components/schemas/beachLng"
+            "url": {
+              "$ref": "#/components/schemas/url"
             },
-            "position": {
-              "$ref": "#/components/schemas/beachPosition"
+            "imageUrl": {
+              "$ref": "#/components/schemas/imageUrl"
             },
-            "rating": {
-              "type": "number",
-              "example": 3
+            "newsSite": {
+              "$ref": "#/components/schemas/newsSite"
             },
-            "swellDirection": {
-              "type": "number",
-              "description": "Swell direction in degrees",
-              "example": 300
+            "summary": {
+              "$ref": "#/components/schemas/summary"
             },
-            "swellHeight": {
-              "type": "number",
-              "description": "Swell height in meters",
-              "example": 1
+            "publishedAt": {
+              "$ref": "#/components/schemas/publishedAt"
             },
-            "swellPeriod": {
-              "type": "number",
-              "description": "Swell period in seconds",
-              "example": 13.67
+            "featured": {
+              "$ref": "#/components/schemas/featured"
             },
-            "waveDirection": {
-              "type": "number",
-              "description": "Wave direction in degrees",
-              "example": 234
+            "launches": {
+              "$ref": "#/components/schemas/launches"
             },
-            "waveHeight": {
-              "type": "number",
-              "description": "Wave height in meters",
-              "example": 1.5
-            },
-            "windDirection": {
-              "type": "number",
-              "description": "Wind direction in degrees",
-              "example": 234
-            },
-            "windSpeed": {
-              "type": "number",
-              "description": "Wind speed in meters per second",
-              "example": 10
-            },
-            "time": {
-              "type": "string",
-              "example": "2019-05-31T08:00:00+00:00"
+            "events": {
+              "$ref": "#/components/schemas/events"
             }
           }
         }
@@ -500,23 +637,121 @@
           }
         }
       },
-      "BeachCreatedResponse": {
+      "ArticleCreatedResponse": {
         "type": "object",
         "properties": {
           "id": {
             "$ref": "#/components/schemas/id"
           },
-          "name": {
-            "$ref": "#/components/schemas/beachName"
+          "_id": {
+            "$ref": "#/components/schemas/_id"
           },
-          "lat": {
-            "$ref": "#/components/schemas/beachLat"
+          "title": {
+            "$ref": "#/components/schemas/title"
           },
-          "lng": {
-            "$ref": "#/components/schemas/beachLng"
+          "url": {
+            "$ref": "#/components/schemas/url"
           },
-          "position": {
-            "$ref": "#/components/schemas/beachPosition"
+          "imageUrl": {
+            "$ref": "#/components/schemas/imageUrl"
+          },
+          "newsSite": {
+            "$ref": "#/components/schemas/newsSite"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/summary"
+          },
+          "publishedAt": {
+            "$ref": "#/components/schemas/publishedAt"
+          },
+          "featured": {
+            "$ref": "#/components/schemas/featured"
+          },
+          "launches": {
+            "$ref": "#/components/schemas/launches"
+          },
+          "events": {
+            "$ref": "#/components/schemas/events"
+          }
+        }
+      },
+      "ArticlesResponse": {
+        "type": "array",
+        "items": {
+          "id": {
+            "$ref": "#/components/schemas/id"
+          },
+          "_id": {
+            "$ref": "#/components/schemas/_id"
+          },
+          "title": {
+            "$ref": "#/components/schemas/title"
+          },
+          "url": {
+            "$ref": "#/components/schemas/url"
+          },
+          "imageUrl": {
+            "$ref": "#/components/schemas/imageUrl"
+          },
+          "newsSite": {
+            "$ref": "#/components/schemas/newsSite"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/summary"
+          },
+          "publishedAt": {
+            "$ref": "#/components/schemas/publishedAt"
+          },
+
+          "featured": {
+            "$ref": "#/components/schemas/featured"
+          },
+          "launches": {
+            "$ref": "#/components/schemas/launches"
+          },
+          "events": {
+            "$ref": "#/components/schemas/events"
+          }
+        }
+      },
+      "ArticleResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/id"
+          },
+          "_id": {
+            "$ref": "#/components/schemas/_id"
+          },
+          "title": {
+            "$ref": "#/components/schemas/title"
+          },
+          "url": {
+            "$ref": "#/components/schemas/url"
+          },
+          "imageUrl": {
+            "$ref": "#/components/schemas/immageUrl"
+          },
+          "newsSite": {
+            "$ref": "#/components/schemas/newsSite"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/summary"
+          },
+          "publishedAt": {
+            "$ref": "#/components/schemas/publishedAt"
+          },
+          "createdAt": {
+            "$ref": "#/components/schemas/createdAt"
+          },
+          "featured": {
+            "$ref": "#/components/schemas/featured"
+          },
+          "launchs": {
+            "$ref": "#/components/schemas/launchs"
+          },
+          "events": {
+            "$ref": "#/components/schemas/events"
           }
         }
       },
