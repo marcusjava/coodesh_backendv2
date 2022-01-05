@@ -9,8 +9,8 @@ const services = new ArticleService();
 export class ArticlesController extends BaseController {
   @Get('')
   public async getArticles(req: Request, res: Response): Promise<void> {
-    const page = parseInt(req.query.page as string) | 1;
-    const limit = parseInt(req.query.limit as string) | 10;
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
 
@@ -37,8 +37,9 @@ export class ArticlesController extends BaseController {
 
   @Post('db')
   public async createArticles(req: Request, res: Response): Promise<void> {
+    const _limit = parseInt(req.query.limit as string) | 150;
     try {
-      const articles = await services.saveArticlesInDB();
+      const articles = await services.saveArticlesInDB(_limit);
       res.status(200).json(articles);
     } catch (error: any) {
       this.sendCreatedUpdatedErrorResponse(res, error);

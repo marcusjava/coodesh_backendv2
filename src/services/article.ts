@@ -30,11 +30,10 @@ export class ArticleService {
     }
   }
 
-  public async saveArticlesInDB(): Promise<ArticleI[]> {
+  public async saveArticlesInDB(_limit: number): Promise<ArticleI[]> {
     try {
       const spaceClient = new SpaceFlight();
-      const data = await spaceClient.getArticles();
-      console.log(data);
+      const data = await spaceClient.getArticles(_limit);
       const articles = await Article.insertMany(data);
       return articles;
     } catch (error: any) {

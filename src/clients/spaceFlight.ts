@@ -43,10 +43,13 @@ export class SpaceFlight {
   /* facilita os testes!!!! */
   constructor(protected request = new HTTPUtil.Request()) {}
 
-  public async getArticles(): Promise<ArticleI[]> {
+  public async getArticles(_limit = 50): Promise<ArticleI[]> {
     try {
       const response = await this.request.get<ArticleI[]>(
-        `${spaceflightResourceConfig.get('apiUrl')}/articles`
+        `${spaceflightResourceConfig.get('apiUrl')}/articles`,
+        {
+          params: { _limit },
+        }
       );
       return response.data;
     } catch (error: any) {
