@@ -215,21 +215,21 @@
             "description": "Pagination parameter.",
             "required": true,
             "schema": {
-              "type": "string"
-            },
-            "default": "1",
-            "enum": ["1", "2", "3", "4", "5"]
+              "type": "integer",
+              "default": "1",
+              "enum": ["1", "2", "3", "4", "5"]
+            }
           },
           {
             "name": "limit",
             "in": "query",
             "description": "Pagination Limit for items displayed",
             "required": true,
-            "default": "10",
             "schema": {
-              "type": "string"
-            },
-            "enum": ["10", "20", "30"]
+              "type": "integer",
+              "default": "10",
+              "enum": ["10", "20", "30"]
+            }
           }
         ],
         "responses": {
@@ -730,40 +730,43 @@
       "ArticlesResponse": {
         "type": "array",
         "items": {
-          "_id": {
-            "$ref": "#/components/schemas/_id"
-          },
-          "id": {
-            "$ref": "#/components/schemas/id"
-          },
+          "type": "array",
+          "properties": {
+            "_id": {
+              "$ref": "#/components/schemas/_id"
+            },
+            "id": {
+              "$ref": "#/components/schemas/id"
+            },
 
-          "title": {
-            "$ref": "#/components/schemas/title"
-          },
-          "url": {
-            "$ref": "#/components/schemas/url"
-          },
-          "imageUrl": {
-            "$ref": "#/components/schemas/imageUrl"
-          },
-          "newsSite": {
-            "$ref": "#/components/schemas/newsSite"
-          },
-          "summary": {
-            "$ref": "#/components/schemas/summary"
-          },
-          "publishedAt": {
-            "$ref": "#/components/schemas/publishedAt"
-          },
+            "title": {
+              "$ref": "#/components/schemas/title"
+            },
+            "url": {
+              "$ref": "#/components/schemas/url"
+            },
+            "imageUrl": {
+              "$ref": "#/components/schemas/imageUrl"
+            },
+            "newsSite": {
+              "$ref": "#/components/schemas/newsSite"
+            },
+            "summary": {
+              "$ref": "#/components/schemas/summary"
+            },
+            "publishedAt": {
+              "$ref": "#/components/schemas/publishedAt"
+            },
 
-          "featured": {
-            "$ref": "#/components/schemas/featured"
-          },
-          "launches": {
-            "$ref": "#/components/schemas/launches"
-          },
-          "events": {
-            "$ref": "#/components/schemas/events"
+            "featured": {
+              "$ref": "#/components/schemas/featured"
+            },
+            "launches": {
+              "$ref": "#/components/schemas/launches"
+            },
+            "events": {
+              "$ref": "#/components/schemas/events"
+            }
           }
         }
       },
