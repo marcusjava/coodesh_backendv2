@@ -25,14 +25,34 @@
 ## Projeto faz parte do desafio <a href="https://lab.coodesh.com/public-challenges/back-end-challenge-2021" target="_blank">coodesh</a> desenvolvido em NodeJS + SpaceFlight News API
 
 https://coodesh-space.herokuapp.com/
+<br/>
+<br/>
 
 ## 🎨 Projeto <a id="sobre"> </a>
 
+---
+
+<br/>
+<br/>
 Este projeto faz parte do Desafio Backend da empresa coodesh lab onde foi utilizado principios de Clean Code, TDD, Testes Unitarios e de Integração, GitHub Actions para tarefas de CI/CD com execução dos testes e ao final deploy automatizado para o Heroku garantindo assim maior confiabilidade pois o deploy só é realizado após os testes. Link do desafio: https://lab.coodesh.com/public-challenges/back-end-challenge-2021
+<br/>
+<br/>
 
 ## 💻 Demostração <a href='demonstracao'></a>
 
+---
+
+<br/>
+<br/>
+<h2 align="center">
+<img src="assets/swagger.png" alt="swagger"/>
+</h2>
+
+Documentação feita seguindo padrão OpenAPI utilizando o Swagger bastando acessar a seguinte url - https://coodesh-space.herokuapp.com/api/docs
+
 ## 🛠 Tecnologias <a id="tecnologias"></a>
+
+---
 
 Algumas das ferramentas utilizadas na construção do projeto:
 
@@ -49,6 +69,8 @@ Algumas das ferramentas utilizadas na construção do projeto:
 - [http-status-codes](https://github.com/prettymuchbryce/http-status-codes)
 
 ## 📝 Instruções de Instalação <a id="instalacao"> </a>
+
+---
 
 1. Clone o repositorio
 
@@ -68,7 +90,7 @@ Algumas das ferramentas utilizadas na construção do projeto:
 - Testando imagem: docker run -p 80:80 noma_imagem
 - Abra o navegador e digite http://localhost
 
-### 👨‍💻 Autor <a id="autor"> </a>
+## 👨‍💻 Autor <a id="autor"> </a>
 
 ---
 
