@@ -15,7 +15,6 @@
  <a href="#tecnologias">Tecnologias</a> •
  <a href="#instalacao">Instalação</a> •
  <a href="#docker">Docker</a> •
- <a href="#dvd-executar-o-projeto">Executar</a> •
  <a href="#autor">Autor</a>
 
 </p>
@@ -30,8 +29,6 @@ https://coodesh-space.herokuapp.com/
 
 ## 🎨 Projeto <a id="sobre"> </a>
 
----
-
 <br/>
 <br/>
 Este projeto faz parte do Desafio Backend da empresa coodesh lab onde foi utilizado principios de Clean Code, TDD, Testes Unitarios e de Integração, GitHub Actions para tarefas de CI/CD com execução dos testes e ao final deploy automatizado para o Heroku garantindo assim maior confiabilidade pois o deploy só é realizado após os testes. Link do desafio: https://lab.coodesh.com/public-challenges/back-end-challenge-2021
@@ -39,8 +36,6 @@ Este projeto faz parte do Desafio Backend da empresa coodesh lab onde foi utiliz
 <br/>
 
 ## 💻 Demostração <a href='demonstracao'></a>
-
----
 
 <br/>
 <br/>
@@ -51,8 +46,6 @@ Este projeto faz parte do Desafio Backend da empresa coodesh lab onde foi utiliz
 Documentação feita seguindo padrão OpenAPI utilizando o Swagger bastando acessar a seguinte url - https://coodesh-space.herokuapp.com/api/docs
 
 ## 🛠 Tecnologias <a id="tecnologias"></a>
-
----
 
 Algumas das ferramentas utilizadas na construção do projeto:
 
@@ -69,8 +62,6 @@ Algumas das ferramentas utilizadas na construção do projeto:
 - [http-status-codes](https://github.com/prettymuchbryce/http-status-codes)
 
 ## 📝 Instruções de Instalação <a id="instalacao"> </a>
-
----
 
 1. Clone o repositorio
 
@@ -91,8 +82,6 @@ Algumas das ferramentas utilizadas na construção do projeto:
 - Abra o navegador e digite http://localhost
 
 ## 👨‍💻 Autor <a id="autor"> </a>
-
----
 
 <a href="https://github.com/marcusjava" style="text-decoration: none;">
 <img style="border-radius: 50%;" src="assets/avatar.png"/>
