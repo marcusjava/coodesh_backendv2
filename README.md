@@ -1,4 +1,6 @@
+<h2 align="center">
 <img src="assets/space-rocket-icon-psd-56184.jpg" alt="rocket"/>
+</h2>
 
 <p align="center">
   <a href="https://github.com/Daniel-Vinicius">
@@ -8,13 +10,13 @@
 <p>
 
 <p align="center">
- <a href="#computer-sobre">Sobre</a> •
+ <a href="#sobre">Sobre</a> •
+ <a href="#demonstracao">Demonstração</a> •
  <a href="#tecnologias">Tecnologias</a> •
- <a href="#memo-roteiro">Roteiro</a> •
- <a href="#triangular_ruler-status-do-projeto">Status</a> •
- <a href="#movie_camera-demonstração">Demonstração</a> •
+ <a href="#instalacao">Instalação</a> •
+ <a href="#docker">Docker</a> •
  <a href="#dvd-executar-o-projeto">Executar</a> •
- <a href="#boy-autor">Autor</a>
+ <a href="#autor">Autor</a>
 
 </p>
 
@@ -24,11 +26,13 @@
 
 https://coodesh-space.herokuapp.com/
 
-## 💻 Projeto
+## 🎨 Projeto <a id="sobre"> </a>
 
 Este projeto faz parte do Desafio Backend da empresa coodesh lab onde foi utilizado principios de Clean Code, TDD, Testes Unitarios e de Integração, GitHub Actions para tarefas de CI/CD com execução dos testes e ao final deploy automatizado para o Heroku garantindo assim maior confiabilidade pois o deploy só é realizado após os testes. Link do desafio: https://lab.coodesh.com/public-challenges/back-end-challenge-2021
 
-## 🛠 Tecnologias<a id="tecnologias"></a>
+## 💻 Demostração <a href='demonstracao'></a>
+
+## 🛠 Tecnologias <a id="tecnologias"></a>
 
 Algumas das ferramentas utilizadas na construção do projeto:
 
@@ -44,7 +48,7 @@ Algumas das ferramentas utilizadas na construção do projeto:
 - [mongodb-memory-server](https://github.com/nodkz/mongodb-memory-server)
 - [http-status-codes](https://github.com/prettymuchbryce/http-status-codes)
 
-## 📝 Instruções de Instalação
+## 📝 Instruções de Instalação <a id="instalacao"> </a>
 
 1. Clone o repositorio
 
@@ -58,19 +62,17 @@ Algumas das ferramentas utilizadas na construção do projeto:
 - Configurar o arquivo config/default.json com as informações do banco de dados(String de conexão)
 - Iniciar projeto - `yarn start:local`
 
-## Usando Docker
+### Usando Docker <a id="docker"> </a>
 
 - Construir imagem: docker build -t nome . no diretorio do dockerfile
 - Testando imagem: docker run -p 80:80 noma_imagem
 - Abra o navegador e digite http://localhost
 
-### Autor <a id="autor"> </a>
+### 👨‍💻 Autor <a id="autor"> </a>
 
 ---
 
 <a href="https://github.com/marcusjava" style="text-decoration: none;">
 <img style="border-radius: 50%;" src="assets/avatar.png"/>
-
-<br />
 <span> Feito com ❤️ por Marcus Vinicius 👋 Entre em contato! </span> 
 </a>
