@@ -1,0 +1,19 @@
+{
+  "App": {
+    "port": "PORT",
+    "database": {
+      "mongoUrl": "MONGODB_URL"
+    },
+    "resources": {
+      "StormGlass": {
+        "apiUrl": "SPACE_FLIGHT_API_URL",
+        "apiToken": "SPACE_FLIGHT_API_TOKEN",
+        "cacheApiTtl": "SPACE_FLIGHT_API_CACHE_TTL"
+      }
+    },
+    "auth": {
+      "key": "JWT_SECRET_KEY",
+      "tokenExpiresIn": "JWT_EXPIRES_IN"
+    }
+  }
+}
