@@ -57,7 +57,7 @@ export class SetupServer extends Server {
     /* 
   CRON agendada para todos os dias às 09 horas
 */
-    cron.schedule('* * * * *', async () => {
+    cron.schedule('* * 9 * * *', async () => {
       await insertNewArticles();
     });
   }

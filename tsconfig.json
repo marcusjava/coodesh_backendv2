@@ -30,7 +30,7 @@
     "./src/**/*.ts",
     "./test/**/*.ts",
     "src/util/script.js",
-    "src/script.js"
+    "src/script.ts"
   ],
   "exclude": ["./node_modules/*", "dist"]
 }
