@@ -13,7 +13,8 @@ import * as OpenApiValidator from 'express-openapi-validator';
 import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
 import logger from './logger';
 import expressPino from 'express-pino-logger';
-
+import cron from 'node-cron';
+import insertNewArticles from './script';
 export class SetupServer extends Server {
   constructor(private port = 3001) {
     super();
@@ -24,6 +25,7 @@ export class SetupServer extends Server {
     this.setupController();
     this.docsSetup();
     await this.setupMongo();
+    await this.setupCron();
     this.setupErrorHandlers();
   }
 
@@ -49,6 +51,15 @@ export class SetupServer extends Server {
         validateResponses: true,
       })
     );
+  }
+
+  private async setupCron(): Promise<void> {
+    /* 
+  CRON agendada para todos os dias às 09 horas
+*/
+    cron.schedule('* * * * *', async () => {
+      await insertNewArticles();
+    });
   }
 
   public async close(): Promise<void> {
